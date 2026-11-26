@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101820">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fireground">
+<meta name="description" content="Fireground visual size-up training scenarios for firefighters.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<title>Fireground Visual Training</title>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">F<span>+</span></div>
+      <div><div class="eyebrow">FIRE SERVICE EDUCATION</div><h1>Fireground <span>Visual Training</span></h1></div>
+    </div>
+    <button class="icon-btn" id="fullscreenBtn" aria-label="Toggle presentation mode" title="Presentation mode">⛶</button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="intro-copy">
+        <div class="pill"><span class="live-dot"></span> SCENARIO TRAINER</div>
+        <h2>What do you see<br><em>on arrival?</em></h2>
+        <p>Choose a structure and fire condition. Present the scene to your crew and practice the initial size-up.</p>
+      </div>
+      <div class="intro-art" aria-hidden="true"><div class="art-ring"></div><div class="art-cross">✚</div></div>
+    </section>
+
+    <section class="control-card">
+      <div class="section-head"><span class="step">01</span><div><h3>Structure type</h3><p>Choose the building you're approaching</p></div></div>
+      <div class="choice-grid structure-grid" id="structureChoices">
+        <button class="choice selected" data-structure="residential"><span class="choice-icon">⌂</span><span>Residential</span></button>
+        <button class="choice" data-structure="business"><span class="choice-icon">▤</span><span>Business</span></button>
+        <button class="choice" data-structure="highrise"><span class="choice-icon">▥</span><span>High-rise</span></button>
+      </div>
+      <div class="section-head fire-head"><span class="step">02</span><div><h3>Visible fire conditions</h3><p>Select what is visible from the exterior</p></div></div>
+      <div class="condition-grid" id="conditionChoices">
+        <button class="condition" data-condition="clear"><span class="condition-symbol clear-symbol">○</span><span>No visible smoke</span></button>
+        <button class="condition" data-condition="light-smoke"><span class="condition-symbol light-symbol">≋</span><span>Light smoke</span></button>
+        <button class="condition" data-condition="heavy-smoke"><span class="condition-symbol heavy-symbol">☁</span><span>Heavy smoke</span></button>
+        <button class="condition" data-condition="fully-engulfed"><span class="condition-symbol fire-symbol">♨</span><span>Fully engulfed</span></button>
+      </div>
+    </section>
+
+    <section class="scene-section">
+      <div class="scene-heading"><div><div class="eyebrow">CURRENT SCENARIO</div><h3 id="sceneTitle">Residential · No visible smoke</h3></div><span class="counter" id="scenarioCounter">01 / 12</span></div>
+      <div class="scene-frame" id="sceneFrame">
+        <img id="sceneImage" src="assets/residential-clear.jpg" alt="Residential home with no visible smoke">
+        <div class="scene-overlay"><span class="scene-label" id="sceneLabel">NO VISIBLE SMOKE</span><span class="scene-disclaimer">ILLUSTRATIVE TRAINING IMAGE</span></div>
+        <button class="expand-scene" id="imageExpand" aria-label="Expand image">⤢</button>
+      </div>
+      <div class="scene-meta"><span id="structureMeta">RESIDENTIAL STRUCTURE</span><span>EXTERIOR VIEW</span></div>
+    </section>
+
+    <section class="discussion-card">
+      <div class="discussion-top"><div><div class="eyebrow">CREW DISCUSSION</div><h3>Talk through your size-up</h3></div><span class="question-mark">?</span></div>
+      <p id="discussionPrompt">You arrive at a residential structure with no visible smoke. What information do you need before committing resources?</p>
+      <button class="reveal-btn" id="revealBtn" aria-expanded="false">Show discussion prompts <span>＋</span></button>
+      <div class="prompt-list" id="promptList" hidden>
+        <ul>
+          <li>What are your initial observations?</li>
+          <li>What occupancy or life-hazard information is available?</li>
+          <li>What additional size-up information is needed?</li>
+          <li>What factors could change your initial plan?</li>
+          <li>What should be communicated to incoming units and command?</li>
+        </ul>
+      </div>
+    </section>
+
+    <nav class="scenario-nav" aria-label="Scenario navigation">
+      <button class="nav-btn secondary" id="previousBtn">← Previous</button>
+      <button class="nav-btn primary" id="nextBtn">Next scenario →</button>
+    </nav>
+    <div class="utility-row">
+      <button class="utility-btn" id="randomBtn">⤨ <span>Random scenario</span></button>
+      <button class="utility-btn" id="shareBtn">↗ <span>Share app</span></button>
+    </div>
+    <div class="scenario-index">
+      <div class="index-heading"><h3>All scenarios</h3><span>12 visual scenarios</span></div>
+      <div class="thumb-grid" id="thumbGrid"></div>
+    </div>
+    <aside class="safety-note"><strong>Training use only.</strong> These generated images are illustrative and do not represent actual incident conditions. Smoke and visible flame alone do not establish interior conditions, fire location, occupancy, structural stability, or life hazard. Follow your department's SOPs/SOGs, command structure, and approved training materials.</aside>
+  </main>
+  <footer><span>FIREGROUND VISUAL TRAINING</span><span>BUILT FOR CREW DISCUSSION</span></footer>
+</div>
+<div class="lightbox" id="lightbox" hidden><button id="closeLightbox" aria-label="Close image">×</button><img id="lightboxImage" alt=""></div>
+<script src="app.js"></script>
+</body>
+</html>
